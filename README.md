@@ -9,7 +9,13 @@ The CMakeFiles.txt requires this line at the top: set(PICO_BOARD pico2) # (optio
 
 For ease of use and necessity, Client and Server software are in different subdirectories. To simplify maintenance, I placed the files RFM95.h, RFM95fun.cpp and RFM95reg.h one level higher, with soft links from the Client and Server directories for those three files. The links for the three RFM95x files will have to recreated after cloning, such as (from inside the Client and Server directories): ln -s ../RFM95.h RFM95.h
 
-Page number references are from the [Low Power Long Range Transceiver Module Model No.:RFM95W/96W/98W](https://hoperf.com) document, Version 2.0.
+Page number references are from the [Low Power Long Range Transceiver Module Model No.:RFM95W/96W/98W](https://hoperf.com) document, Version 2.0. Normal UF2 development consists of, from inside the Client/Server directories, performing the following:
+
+- mkdir build && cd build
+- cmake ..
+- make
+
+This will produce a filename.uf2 file which is then uploaded to the relevant Pico board.
 
 Additional information may be found regarding this particular effort at [S Lazy H Website](https://slazyh.netlify.app). Comments may be left there, might be responded to, but no support is provided, as I just don't have the time or resources to provide assistance.
 
