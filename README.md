@@ -11,5 +11,5 @@ For ease of use and necessity, Client and Server software are in different subdi
 
 Page number references are from the [Low Power Long Range Transceiver Module Model No.:RFM95W/96W/98W](https://hoperf.com) document, Version 2.0.
 
-
+Additional information may be found regarding this particular effort at [S Lazy H Website](https://slazyh.netlify.app). Comments may be left there, might be responded to, but no support is provided, as I just don't have the time or resources to provide assistance.
 
