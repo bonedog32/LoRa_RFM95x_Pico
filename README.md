@@ -8,3 +8,5 @@ The software requires the latest PICO-SDK environment installed, which includes 
 The CMakeFiles.txt requires this line at the top: set(PICO_BOARD pico2) # (options: pico2, pico_w, pico) to denote which Pico is being used. Initial development was performed on a Raspberry PI 5, but should work on PI 4 also. With the appropriate prerequisites installed, it also works on Fedora 42.
 
 For ease of use and necessity, Client and Server software are in different subdirectories. To simplify maintenance, I placed the files RFM95.h, RFM95fun.cpp and RFM95reg.h one level higher, with soft links from the Client and Server directories for those three files.
+
+Page number references are from the [Low Power Long Range Transceiver Module Model No.:RFM95W/96W/98W](https://hoperf.com) document, Version 2.0.
