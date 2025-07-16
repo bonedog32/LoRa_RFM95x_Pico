@@ -10,3 +10,6 @@ The CMakeFiles.txt requires this line at the top: set(PICO_BOARD pico2) # (optio
 For ease of use and necessity, Client and Server software are in different subdirectories. To simplify maintenance, I placed the files RFM95.h, RFM95fun.cpp and RFM95reg.h one level higher, with soft links from the Client and Server directories for those three files.
 
 Page number references are from the [Low Power Long Range Transceiver Module Model No.:RFM95W/96W/98W](https://hoperf.com) document, Version 2.0.
+
+
+
