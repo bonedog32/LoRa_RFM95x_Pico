@@ -127,50 +127,6 @@ static vector<uint8_t> hex2ascii(vector<uint8_t> payload) {
 }
 
 /* Function to send message */
-static uint8_t send_message(uint8_t destination, uint8_t sender, uint8_t identifier, uint8_t flags, uint8_t* data, uint8_t len) {
-  write_register(REG_01_OP_MODE, STBY_MODE); // LoRa mode changed only in Sleep mode.
-  write_register(REG_0D_FIFO_ADDR_PTR, REG_0E_FIFO_TX_BASE_ADDR); // FIFO ptr to TX base
-  // Header data
-  write_register(REG_00_FIFO, destination);
-  write_register(REG_00_FIFO, sender);
-  write_register(REG_00_FIFO, identifier);
-  write_register(REG_00_FIFO, flags);
-    
-  for(int i = 0; i <= len; i++) { // fill FIFO register
-      write_register(REG_00_FIFO, data[i]);
-  }
-  write_register(REG_22_PAYLOAD_LENGTH, len + 4); // fill payload length
-  // set TX mode
-  write_register(REG_40_DIO_MAPPING1, TX_DONE); // set DIO0 for TxDone interrupt
-  write_register(REG_01_OP_MODE, TX_MODE); // transmit packet
-  unsigned char id; // for register buffer, TEST
-  read_register(REG_01_OP_MODE, &id, 2); // transmit mode, TEST
-  if (id == 0x83) {
-     cout << "\nTransmit Mode." << endl; // test for transmit mode, TEST
-   } else { cout << "BAD Mode." << endl; } // TEST
-   while (!DIO0) {
-    tight_loop_contents();
-  }
-   cout << "Packet sent." << endl;
-  // mode returns to standby
-  
-  // read FIFO, TEST
-  write_register(REG_0D_FIFO_ADDR_PTR, REG_0E_FIFO_TX_BASE_ADDR); // FIFO ptr to TX base
-
-  for(int i = 0; i <= len+4; i++) {
-    read_register(REG_00_FIFO, &id, 1);
-    cout << static_cast<int>(id) << " "; // show in hex
-    //cout << (char) static_cast<int>(id); // show in ascii
-  }
-  cout << endl;
-  read_register(REG_01_OP_MODE, &id, 2); // TEST
-  if (id == 0x81) {
-    cout << "Standby Mode." << endl; // test for receive mode, TEST
-  } else { cout << "BAD Mode." << endl; } // TEST
-  // end of read FIFO, TEST 
-
-  return 0;
-}
 static int build_packet(uint8_t SERVER,uint8_t CLIENT,uint8_t identifier,uint8_t flags, std::string message) {
   write_register(REG_01_OP_MODE, STBY_MODE); // LoRa FIFO can only be filled in stand-by mode
 
